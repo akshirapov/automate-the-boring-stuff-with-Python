@@ -2,4 +2,4 @@ https://automatetheboringstuff.com
 
 19.05.2019 - start learning
 
-Last page - 53p
+Last page - 63p "while Loop Statements"
