@@ -2,4 +2,4 @@ https://automatetheboringstuff.com
 
 19.05.2019 - start learning
 
-Next - 126p "The keys(), values(), and items() Methods"
+Next - 139p "Practice Projects"
