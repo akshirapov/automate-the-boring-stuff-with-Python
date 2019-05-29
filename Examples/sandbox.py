@@ -1,16 +1,11 @@
-allGuests = {'Alice': {'apples': 5, 'pretzels': 12},
-             'Bob': {'ham sandwiches': 3, 'apples': 2},
-             'Carol': {'cups': 3, 'apple pies': 1}}
+"""This is a test Python program.
+Written by Alexander Shirapov cccp2006_06@mail.ru
 
-def totalBrought(guests, item):
-    numBrought = 0
-    for k, v in guests.items():
-        numBrought = numBrought + v.get(item, 0)
-    return numBrought
+This program was designed for Python 3, not Python 2.
+"""
 
-print('Number of things being brought:')
-print(' - Apples: ' + str(totalBrought(allGuests, 'apples')))
-print(' - Cups: ' + str(totalBrought(allGuests, 'cups')))
-print(' - Cakes: ' + str(totalBrought(allGuests, 'cakes')))
-print(' - Ham Sandwiches: ' + str(totalBrought(allGuests, 'ham sandwiches')))
-print(' - Apple Pies: ' + str(totalBrought(allGuests, 'apple pies')))
+
+def spam():
+    """This is a multiline comment to help
+    explain what the spam() function does."""
+    print('Hello')
