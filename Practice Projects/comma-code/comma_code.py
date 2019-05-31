@@ -1,3 +1,4 @@
+
 def to_str(list):
 
     r = ''
@@ -9,6 +10,7 @@ def to_str(list):
             r += i + ', '
 
     return r
+
 
 spam = ['apples', 'bananas', 'tofu', 'cats']
 print(to_str(spam))

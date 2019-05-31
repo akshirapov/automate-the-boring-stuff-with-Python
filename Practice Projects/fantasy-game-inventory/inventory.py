@@ -1,6 +1,7 @@
 # inventory
 
-def displayInventory(inventory):
+
+def display_inventory(inventory):
     print('Inventory:')
     item_total = 0
     for k, v in inventory.items():
@@ -9,8 +10,8 @@ def displayInventory(inventory):
     print('\nTotal number of items: ' + str(item_total))
 
 
-def addToInventory(inventory, addItems):
-    for item in addItems:
+def add_to_inventory(inventory, add_items):
+    for item in add_items:
         inventory.setdefault(item, 0)
         inventory[item] += 1
 
@@ -18,7 +19,7 @@ def addToInventory(inventory, addItems):
 
 
 inv = {'gold coin': 42, 'rope': 1}
-dragonLoot = ['gold coin', 'dagger', 'gold coin', 'gold coin', 'ruby']
+dragon_loot = ['gold coin', 'dagger', 'gold coin', 'gold coin', 'ruby']
 
-inv = addToInventory(inv, dragonLoot)
-displayInventory(inv)
+inv = add_to_inventory(inv, dragon_loot)
+display_inventory(inv)
