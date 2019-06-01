@@ -1,5 +1,1 @@
-https://automatetheboringstuff.com
-
-19.05.2019 - start learning
-
-Next - 170p "Grouping with Parentheses"
+Next - 193p "Practice Projects"
