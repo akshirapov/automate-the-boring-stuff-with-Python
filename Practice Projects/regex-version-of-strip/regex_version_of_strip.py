@@ -9,7 +9,7 @@ def like_strip(string, chars=''):
 
     regex_str = r'(\s)'
 
-    if chars is None:
+    if chars == '':
         regex_str = r'^(\s+)|(\s+)$'
 
     regex = re.compile(regex_str)
@@ -18,5 +18,5 @@ def like_strip(string, chars=''):
 
 text = ' \t\n Hello, Alex! \t\n'
 
-strip_text = like_strip(text)
+strip_text = like_strip(text, chars='&')
 print(strip_text)
