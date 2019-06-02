@@ -1,11 +1,3 @@
-
-### PyCharm ###
 .idea/
-
-### Python ###
-__pycache__/
-*.py[cod]
-*$py.class
-
-# Environments
 venv/
+Examples/sandbox.py
