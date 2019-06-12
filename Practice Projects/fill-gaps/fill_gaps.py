@@ -7,7 +7,12 @@ import re
 import shutil
 
 
-def files_with_prefix(folder='.', prefix=''):
+# target_folder = '/home/alex/test'
+FOLDER = 'C:\\Users\\User\\Desktop\\github\\test'
+PREFIX = 'spam'
+
+
+def files_with_prefix(folder=FOLDER, prefix=PREFIX):
 
     files = []
 
@@ -55,7 +60,7 @@ def gaps_in_files(files):
     return gaps_index
 
 
-def rename_files(files, index=0, folder='.', prefix=''):
+def rename_files(files, index=0, folder=FOLDER, prefix=PREFIX):
 
     if not files:
         return
@@ -95,12 +100,53 @@ def rename_files(files, index=0, folder='.', prefix=''):
         os.rmdir(temp_folder)
 
 
-# target_folder = 'C:\\test'
-target_folder = '/home/alex/test'
-target_prefix = 'spam'
+def insert_gaps(files, gaps, folder=FOLDER, prefix=PREFIX):
+
+    if not files:
+        return
+
+    if not gaps:
+        return
+
+    num_regex = re.compile(r'((\d)+)')
+    mo = num_regex.search(files[0])
+    if mo is None:
+        return
+
+    number = int(mo.groups()[1])
+
+    # temp folder for copies
+    temp_folder = os.path.join(folder, 'temp')
+    if not os.path.exists(temp_folder):
+        os.makedirs(temp_folder)
+
+    for i in range(len(files)):
+
+        if i in gaps:
+            number += 1
+
+        filename = files[i]
+        new_filename = prefix + '{:03d}'.format(number) + '.txt'
+
+        # move into temp folder
+        src_path = os.path.join(folder, filename)
+        dst_path = os.path.join(temp_folder, new_filename)
+        shutil.move(src_path, dst_path)
+
+        number += 1
+
+    # move copies from temp folder
+    for copy_filename in os.listdir(temp_folder):
+
+        src_path = os.path.join(temp_folder, copy_filename)
+        shutil.move(src_path, folder)
+
+    if os.path.exists(temp_folder):
+        os.rmdir(temp_folder)
+
 
 print('FILES:')
-searched_files = files_with_prefix(target_folder, target_prefix)
+searched_files = files_with_prefix()
 print(searched_files)
 
 print('INDEXES OF GABS:')
@@ -108,4 +154,12 @@ searched_gaps = gaps_in_files(searched_files)
 print(searched_gaps)
 
 if searched_gaps:
-    rename_files(searched_files, searched_gaps[0], target_folder, target_prefix)
+    rename_files(searched_files, searched_gaps[0])
+
+print('FILES:')
+searched_files = files_with_prefix()
+print(searched_files)
+
+print('INSERT GAPS:')
+gaps = [2, 5, 10]  # indexes of gaps
+insert_gaps(searched_files, gaps)
