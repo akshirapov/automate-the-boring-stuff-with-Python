@@ -11,7 +11,7 @@ from openpyxl.styles import Font
 # Take a number N from command line
 size_num = 6
 if len(sys.argv) > 1:
-    size_num = sys.argv[1]
+    size_num = int(sys.argv[1])
 
 # Create workbook with sheet
 wb = openpyxl.Workbook()
