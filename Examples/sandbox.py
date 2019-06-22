@@ -1,14 +1,5 @@
-import PyPDF2
-pdfFile = open('meetingminutes.pdf', 'rb')
-pdfReader = PyPDF2.PdfFileReader(pdfFile)
-pdfWriter = PyPDF2.PdfFileWriter()
+import docx
 
-for pageNum in range(pdfReader.numPages):
-    pdfWriter.addPage(pdfReader.getPage(pageNum))
+doc = docx.Document('demo.docx')
+doc.paragraphs[0].text
 
-pdfWriter.encrypt('swordfish')
-resultPdf = open('ecryptedminutes.pdf', 'wb')
-pdfWriter.write(resultPdf)
-
-pdfFile.close()
-resultPdf.close()
