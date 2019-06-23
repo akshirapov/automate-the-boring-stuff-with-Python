@@ -38,7 +38,7 @@ def encrypt_files(files, password=''):
         pdf_file_new = open(filename_new, 'rb')
         pdf_reader = PyPDF2.PdfFileReader(pdf_file_new)
 
-        if pdf_reader.decrypt(password):
+        if pdf_reader.decrypt(password) == 1:
             os.remove(filename)
             print(filename, 'has been removed.')
         else:
