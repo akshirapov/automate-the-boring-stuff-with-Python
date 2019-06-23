@@ -2,10 +2,14 @@ beautifulsoup4==4.7.1
 certifi==2019.3.9
 chardet==3.0.4
 et-xmlfile==1.0.1
+html5lib==1.0.1
 idna==2.8
 jdcal==1.4.1
+lxml==4.3.4
 openpyxl==2.3.3
+PyPDF2==1.26.0
 pyperclip==1.7.0
+python-docx==0.8.10
 requests==2.22.0
 selenium==3.141.0
 Send2Trash==1.5.0
