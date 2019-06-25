@@ -4,14 +4,12 @@
 
 import json, requests, sys
 
+
 # Compute location from command line arguments.
 if len(sys.argv) < 1:
     print('Usage: quickWeather.py location')
     sys.exit()
 location = ' '.join(sys.argv[1:])
-
-location = 'Irkutsk'
-
 
 # Download the JSON data from OpenWeatherMap.org's API.
 api_id = '3f0a41ec4f54c4d5e0d8eea9ed868c5d'
@@ -21,9 +19,7 @@ response.raise_for_status()
 
 # Load JSON data into a Python variable.
 weatherData = json.loads(response.text)
+
 # Print weather descriptions.
-w = weatherData['list']
 print('Current weather in %s:' % location)
-
-
-
+print(weatherData['weather'][0]['main'], '-', weatherData['weather'][0]['description'])
