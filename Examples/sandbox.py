@@ -1,21 +1,6 @@
+import datetime
 import time
-import profile
 
-
-def calcProd():
-    # Calculate the product of the first 100,000 numbers.
-    product = 1
-    for i in range(1, 100000):
-        product = product * i
-    return product
-
-
-startTime = time.time()
-prod = calcProd()
-endTime = time.time()
-print('The result is %s digits long.' % (len(str(prod))))
-print('Took %s seconds to calculate.' % (endTime-startTime))
-
-print('*' * 80)
-
-profile.run(calcProd())
+halloween2016 = datetime.datetime(2019, 10, 31, 0, 0, 0)
+while datetime.datetime.now() < halloween2016:
+    time.sleep(1)
