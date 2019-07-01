@@ -3,12 +3,7 @@
 # and downloads the images if the comic was updated since the last visit
 
 
-"""
-Propose:
-- Download images from several websites
-- Check for updates
-"""
-
+import os
 import requests
 import bs4
 from urllib.parse import urljoin
@@ -17,7 +12,7 @@ import logging
 logging.basicConfig(level=logging.DEBUG, format='%(levelname)s: %(message)s')
 
 
-def download_from_lunarbaboon():
+def images_from_lunarbaboon():
 
     # Get site
     url = 'http://www.lunarbaboon.com/'
@@ -26,27 +21,46 @@ def download_from_lunarbaboon():
         response.raise_for_status()
     except requests.exceptions.HTTPError:
         print("Site %s can’t be reached. Status code: %s" % (url, response.status_code))
+        return []
+
+    soup = bs4.BeautifulSoup(response.text, 'html.parser')
+    content = soup.select('div.body img')
+
+    links = []
+    for img in content:
+        src = img['src'].split('?')[0]  # without options
+        links.append(urljoin(url, src))
+
+    return links
+
+
+def download_images(images, folder):
+
+    if not images:
         return
 
-    # Get content
-    soup = bs4.BeautifulSoup(response.text, 'html.parser')
+    os.makedirs(folder, exist_ok=True)
 
-    # Search elements with ref of image
-    posts = soup.select('#content ')
+    for image_url in images:
 
-    logging.debug(len(posts))
+        image_name = os.path.join(folder, os.path.basename(image_url))
 
-    for post in posts:
-        logging.debug(post)
+        if os.path.isfile(image_name):
+            continue
 
-    last_post = posts[1]
+        try:
+            response = requests.get(image_url)
+            response.raise_for_status()
+        except requests.exceptions.HTTPError:
+            continue
 
-    # logging.debug('\n' + last_post.prettify())
+        image_file = open(image_name, 'wb')
+        for chunk in response.iter_content(100000):
+            image_file.write(chunk)
+        image_file.close()
 
 
-    # TODO: Check for the updates
+images1 = images_from_lunarbaboon()
+folder1 = 'lunarbaboon'
 
-
-    # TODO: Download image
-
-download_from_lunarbaboon()
+download_images(images1, folder1)
