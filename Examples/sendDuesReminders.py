@@ -22,8 +22,19 @@ for r in range(2, sheet.max_row + 1):
         unpaidMembers[name] = email
 
 # Log in to email account.
-smtpObj = smtplib.SMTP_SSL('smtp.gmail.com', 587)
+smtpObj = smtplib.SMTP_SSL('smtp.gmail.com', 465)
 smtpObj.ehlo()
 smtpObj.login('ivanov.ivan.python.2019', sys.argv[1])
 
-# TODO: Send out reminder emails.
+# Send out reminder emails.
+for name, email in unpaidMembers.items():
+    body = "Subject: %s dues unpaid.\nDear %s,\nRecords show " \
+           "that you have not paid dues for %s. Please make this " \
+           "payment as soon as possible. Thank you!'" % (latestMonth, name, latestMonth)
+    print('Sending email to %s...' % email)
+    sendmailStatus = smtpObj.sendmail('ivanov.ivan.python.2019', email, body)
+
+    if sendmailStatus != {}:
+        print('There was problem sending email to %s: %s' % (email, sendmailStatus))
+
+smtpObj.close()
