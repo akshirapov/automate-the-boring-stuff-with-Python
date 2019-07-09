@@ -19,7 +19,7 @@ logging.disable(logging.DEBUG)
 
 # log in to email server
 imap_obj = imapclient.IMAPClient('imap.gmail.com')
-imap_obj.login('ivanov.ivan.python.2019', 'mXiFHuYVHnQu')
+imap_obj.login('ivanov.ivan.python.2019', sys.argv[1])
 imap_obj.select_folder('INBOX', readonly=True)
 
 # fetch messages
