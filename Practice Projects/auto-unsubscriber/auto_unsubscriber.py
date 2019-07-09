@@ -31,6 +31,8 @@ for uid, message_data in messages.items():
             if content_type in ('text/html', 'text/plain'):
                 parts.append(part.get_payload(decode=True))
         payload = b''.join(parts)
+    else:
+        payload = email_message.get_payload(decode=True)
 
     # search unsubscribe link
     soup = bs4.BeautifulSoup(payload, 'html.parser')
