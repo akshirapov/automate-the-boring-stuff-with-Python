@@ -9,6 +9,7 @@ IMAPClient==2.1.0
 jdcal==1.4.1
 lxml==4.3.4
 openpyxl==2.3.3
+Pillow==6.1.0
 PyJWT==1.7.1
 PyPDF2==1.26.0
 pyperclip==1.7.0
